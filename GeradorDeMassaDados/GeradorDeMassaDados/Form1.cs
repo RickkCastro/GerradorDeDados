@@ -32,9 +32,11 @@ namespace GerradorDeMassaDados
             }
             catch
             {
+                conectarBD();
                 NomeList.SaveFile("NomeList.txt", RichTextBoxStreamType.PlainText);
                 Sb1List.SaveFile("Sb1List.txt", RichTextBoxStreamType.PlainText);
                 Sb2List.SaveFile("Sb2List.txt", RichTextBoxStreamType.PlainText);
+                richTextBox1.SaveFile("MD.txt", RichTextBoxStreamType.PlainText);
             }
         }
 
@@ -62,6 +64,7 @@ namespace GerradorDeMassaDados
             NomeList.LoadFile("NomeList.txt", RichTextBoxStreamType.PlainText);
             Sb1List.LoadFile("Sb1List.txt", RichTextBoxStreamType.PlainText);
             Sb2List.LoadFile("Sb2List.txt", RichTextBoxStreamType.PlainText);
+            richTextBox1.LoadFile("MD.txt", RichTextBoxStreamType.PlainText);
         }
 
         private void BtNome_Click(object sender, EventArgs e)
@@ -111,7 +114,7 @@ namespace GerradorDeMassaDados
         {
             int NumMassa = 0;
 
-            if(TxtGmNum.Text == "")
+            if (TxtGmNum.Text == "")
             {
                 NumMassa = 1;
             }
@@ -140,7 +143,10 @@ namespace GerradorDeMassaDados
                 else
                     NomeC = nome + " " + Sb1 + " " + Sb2;
 
-                //richTextBox1.Text += NomeC + "\t";
+                if (richTextBox1.Text == "")
+                    richTextBox1.Text += NomeC + "\t";
+                else
+                    richTextBox1.Text += "\n" + NomeC + "\t";
 
                 //gerar end
                 int RuaRndName1 = rnd.Next(0, NomeList.Lines.Count() - 1);
@@ -160,7 +166,7 @@ namespace GerradorDeMassaDados
                 else
                     End = "Rua " + Rua1 + " " + Rua2 + " " + Rua3 + ", " + RnHomeNum.ToString("000");
 
-                //richTextBox1.Text += End + "\t";
+                richTextBox1.Text += End + "\t";
 
                 //gerar telefone
                 String telefone = "";
@@ -178,7 +184,7 @@ namespace GerradorDeMassaDados
                 telefone = "(" + nums[0].ToString() + nums[1].ToString() + ") " + "9 " + nums[2].ToString() + nums[3].ToString() + nums[4].ToString()
                     + nums[5].ToString() + "-" + nums[6].ToString() + nums[7].ToString() + nums[8].ToString() + nums[9].ToString();
 
-                //richTextBox1.Text += telefone + "\t";
+                richTextBox1.Text += telefone + "\t";
 
                 //gerar cpf
                 String cpf = "";
@@ -190,17 +196,48 @@ namespace GerradorDeMassaDados
                     cpfnums[c] = rnd.Next(0, 10);
                 }
 
+                cpfnums[9] = 11 - (((cpfnums[0] * 10) + (cpfnums[1] * 9) + (cpfnums[2] * 8) + (cpfnums[3] * 7) +
+                    (cpfnums[4] * 6) + (cpfnums[5] * 5) + (cpfnums[6] * 4) + (cpfnums[7] * 3) + (cpfnums[8] * 2)) % 11);
+
+                if (cpfnums[9] > 9)
+                    cpfnums[9] = 0;
+
+                cpfnums[10] = 11 - (((cpfnums[0] * 11) + (cpfnums[1] * 10) + (cpfnums[2] * 9) + (cpfnums[3] * 8) +
+                    (cpfnums[4] * 7) + (cpfnums[5] * 6) + (cpfnums[6] * 5) + (cpfnums[7] * 4) + (cpfnums[8] * 3) + (cpfnums[9] * 2)) % 11);
+
+                if (cpfnums[10] > 9)
+                    cpfnums[10] = 0;
+
                 cpf = cpfnums[0].ToString() + cpfnums[1].ToString() + cpfnums[2].ToString() + "." + cpfnums[3].ToString() + cpfnums[4].ToString() + cpfnums[5].ToString() + "." + cpfnums[6].ToString() +
                     cpfnums[7].ToString() + cpfnums[8].ToString() + "-" + cpfnums[9].ToString() + cpfnums[10].ToString();
 
-                //richTextBox1.Text += cpf + "\n";
+                richTextBox1.Text += cpf;
 
                 //passar por bd
                 dao.Inserir(NomeC, End, telefone, cpf);
             }
 
             dao.PreencherTabela(dataGridView1);
+            richTextBox1.SaveFile("MD.txt", RichTextBoxStreamType.PlainText);
             MessageBox.Show("Dados foram alocados no banco de dados", "Suscesso!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void BtCPFSP_Click(object sender, EventArgs e)
+        {
+            for(int i = 0; i < dataGridView1.RowCount; i++)
+            {
+                string cpf = dataGridView1.Rows[i].Cells[4].Value.ToString();
+
+                if (cpf[10].ToString() == "8")
+                {
+                    if (CpfsSpList.Text == "")
+                        CpfsSpList.Text += cpf;
+                    else
+                        CpfsSpList.Text += "\n" + cpf;
+                }
+            }
+
+            CpfsSpList.SaveFile("listCPF_Sp.txt", RichTextBoxStreamType.PlainText);
         }
     }
 }

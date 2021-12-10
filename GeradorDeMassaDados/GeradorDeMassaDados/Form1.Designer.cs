@@ -42,9 +42,13 @@
             this.TxtGmNum = new System.Windows.Forms.TextBox();
             this.Sb1List = new System.Windows.Forms.RichTextBox();
             this.Sb2List = new System.Windows.Forms.RichTextBox();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.dataSet1 = new System.Data.DataSet();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.CpfsSpList = new System.Windows.Forms.RichTextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.BtCPFSP = new System.Windows.Forms.Button();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -169,14 +173,6 @@
             this.Sb2List.TabIndex = 2;
             this.Sb2List.Text = "";
             // 
-            // richTextBox1
-            // 
-            this.richTextBox1.Location = new System.Drawing.Point(602, 63);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(215, 257);
-            this.richTextBox1.TabIndex = 2;
-            this.richTextBox1.Text = "";
-            // 
             // dataSet1
             // 
             this.dataSet1.DataSetName = "NewDataSet";
@@ -195,13 +191,62 @@
             this.dataGridView1.Size = new System.Drawing.Size(573, 150);
             this.dataGridView1.TabIndex = 7;
             // 
+            // CpfsSpList
+            // 
+            this.CpfsSpList.Location = new System.Drawing.Point(799, 63);
+            this.CpfsSpList.Name = "CpfsSpList";
+            this.CpfsSpList.Size = new System.Drawing.Size(180, 257);
+            this.CpfsSpList.TabIndex = 2;
+            this.CpfsSpList.Text = "";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(856, 35);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(75, 25);
+            this.label6.TabIndex = 6;
+            this.label6.Text = "Cpfs SP";
+            // 
+            // BtCPFSP
+            // 
+            this.BtCPFSP.Location = new System.Drawing.Point(839, 327);
+            this.BtCPFSP.Margin = new System.Windows.Forms.Padding(0);
+            this.BtCPFSP.Name = "BtCPFSP";
+            this.BtCPFSP.Size = new System.Drawing.Size(82, 22);
+            this.BtCPFSP.TabIndex = 1;
+            this.BtCPFSP.Text = "CPFs de SP";
+            this.BtCPFSP.UseVisualStyleBackColor = true;
+            this.BtCPFSP.Click += new System.EventHandler(this.BtCPFSP_Click);
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Location = new System.Drawing.Point(613, 63);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(180, 257);
+            this.richTextBox1.TabIndex = 2;
+            this.richTextBox1.Text = "";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(673, 35);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(65, 25);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Dados";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
-            this.ClientSize = new System.Drawing.Size(598, 522);
+            this.ClientSize = new System.Drawing.Size(1015, 522);
             this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.BtSb2);
@@ -210,8 +255,10 @@
             this.Controls.Add(this.TxtSb1);
             this.Controls.Add(this.TxtGmNum);
             this.Controls.Add(this.TxtNome);
+            this.Controls.Add(this.BtCPFSP);
             this.Controls.Add(this.BtGM);
             this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.CpfsSpList);
             this.Controls.Add(this.Sb2List);
             this.Controls.Add(this.Sb1List);
             this.Controls.Add(this.NomeList);
@@ -246,9 +293,13 @@
         private System.Windows.Forms.TextBox TxtGmNum;
         private System.Windows.Forms.RichTextBox Sb1List;
         private System.Windows.Forms.RichTextBox Sb2List;
-        private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Data.DataSet dataSet1;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.RichTextBox CpfsSpList;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button BtCPFSP;
+        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.Label label4;
     }
 }
 

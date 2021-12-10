@@ -21,7 +21,7 @@ namespace GerradorDeMassaDados
         public ClassDao()
         {
         }
-
+        
         public Campos campos = new Campos();
 
         public MySqlConnection minhaConexao;
